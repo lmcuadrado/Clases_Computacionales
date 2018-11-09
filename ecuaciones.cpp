@@ -40,17 +40,18 @@ int main()
 	for(int i=0; i<N-1; i++)
 	{	
 		phi_pass[i]=phi_futu[i];
-		phi_futu[i]=((c*c*delta_t*delta_t/(delta_x*delta_x*2))*(phi_pres[i+1]+phi_pres[i-1]-2*phi_pres[i]))+2*phi_pres[i];	
+		phi_pres[i]=((c*c*delta_t*delta_t/(delta_x*delta_x*2))*(A[i+1]+A[i-1]-2*A[i]))+2*A[i];
+		//std::cout<<phi_pres[i]<<std::endl;	
 			
 	}
 	
 	//for tiempo
-	for(int j=0; j<10 ; j++ )
+	for(int j=0; j<1; j++ )
 	{
 		int pasos=0;
 
 		for(int i=1; i<N-1; i++)
-		{
+		{  
 			phi_futu[i]=((c*c*delta_t*delta_t/delta_x*delta_x)*(phi_pres[i+1]+phi_pres[i-1]-2*phi_pres[i]))-phi_pass[i]+2*phi_pres[i];
 		}
 		
@@ -58,18 +59,18 @@ int main()
 		{
 			phi_pass[i]=phi_pres[i];
 			phi_pres[i]=phi_futu[i];
-			std::cout<<phi_pres[i]<<std::endl;
+			//std::cout<<phi_pres[i]<<std::endl;
 		}
 		
 		pasos+=1;
 		
-		
+		std::cout<<phi_pres[j]<<std::endl;
 		/*for(int i=0; i<N; i++)
 			{
 				std::cout<<phi_pres[i]<<std::endl;
 			}*/
 
-		/*if(pasos==1)
+		/*if(pasos==10)
 		{
 			for(int i=0; i<N; i++)
 			{
